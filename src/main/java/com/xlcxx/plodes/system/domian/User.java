@@ -2,6 +2,7 @@ package com.xlcxx.plodes.system.domian;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Table(name = "t_user")
 public class User implements Serializable {
@@ -35,8 +36,16 @@ public class User implements Serializable {
     @Column(name = "dept_id")
     private Long deptId;
 
+    @Transient
+    private List<String> allAuthority;
 
+    public List<String> getAllAuthority() {
+        return allAuthority;
+    }
 
+    public void setAllAuthority(List<String> allAuthority) {
+        this.allAuthority = allAuthority;
+    }
 
     /**
      * 状态 1锁定 0有效

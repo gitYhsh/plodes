@@ -1,7 +1,9 @@
 package com.xlcxx.config.auth.exceptHandler;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xlcxx.utils.ApiResult;
+import com.xlcxx.utils.Constant;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.web.access.AccessDeniedHandler;
 
@@ -20,7 +22,7 @@ public class DeniedHandler implements AccessDeniedHandler {
 	private ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
-		httpServletResponse.setContentType("application/json;charset=utf-8");
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("没有权限!")));
+		httpServletResponse.setContentType(Constant.JSONUTF8);
+		httpServletResponse.getWriter().write(JSONObject.toJSONString(ApiResult.error("没有权限!")));
 	}
 }

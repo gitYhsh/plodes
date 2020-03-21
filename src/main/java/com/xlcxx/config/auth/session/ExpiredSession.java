@@ -1,5 +1,6 @@
 package com.xlcxx.config.auth.session;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xlcxx.utils.ApiResult;
 import com.xlcxx.utils.Constant;
@@ -17,10 +18,9 @@ import java.io.IOException;
  */
 public class ExpiredSession implements SessionInformationExpiredStrategy {
 
-	private ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void onExpiredSessionDetected(SessionInformationExpiredEvent sessionInformationExpiredEvent) throws IOException, ServletException {
 		sessionInformationExpiredEvent.getResponse().setContentType(Constant.JSONUTF8);
-		sessionInformationExpiredEvent.getResponse().getWriter().write(mapper.writeValueAsString(ApiResult.error("登陆失效")));
+		sessionInformationExpiredEvent.getResponse().getWriter().write(JSONObject.toJSONString(ApiResult.error("登陆失效")));
 	}
 }

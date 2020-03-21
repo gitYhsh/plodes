@@ -1,5 +1,6 @@
 package com.xlcxx.config.auth.session;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xlcxx.utils.ApiResult;
 import com.xlcxx.utils.Constant;
@@ -22,6 +23,6 @@ public class LogoutSuccess implements LogoutSuccessHandler {
 	@Override
 	public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
 		httpServletResponse.setContentType(Constant.JSONUTF8);
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("注销成功")));
+		httpServletResponse.getWriter().write(JSONObject.toJSONString(ApiResult.error("注销成功")));
 	}
 }

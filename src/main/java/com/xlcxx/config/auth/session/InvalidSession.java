@@ -1,5 +1,6 @@
 package com.xlcxx.config.auth.session;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xlcxx.utils.ApiResult;
 import com.xlcxx.utils.Constant;
@@ -17,10 +18,9 @@ import java.io.IOException;
  * 方法说明
  */
 public class InvalidSession implements InvalidSessionStrategy {
-	private ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void onInvalidSessionDetected(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
 		httpServletResponse.setContentType(Constant.JSONUTF8);
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("登陆认证已经失效，请重新登陆")));
+		httpServletResponse.getWriter().write(JSONObject.toJSONString(ApiResult.error("登陆认证已经失效，请重新登陆")));
 	}
 }

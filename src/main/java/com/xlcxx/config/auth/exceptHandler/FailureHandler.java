@@ -1,5 +1,6 @@
 package com.xlcxx.config.auth.exceptHandler;
 
+import com.alibaba.fastjson.JSONObject;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xlcxx.utils.ApiResult;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +22,6 @@ import java.io.IOException;
  */
 @Configuration
 public class FailureHandler implements AuthenticationFailureHandler {
-	private ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
 	                                    AuthenticationException exception) throws IOException {
@@ -44,6 +44,6 @@ public class FailureHandler implements AuthenticationFailureHandler {
 			message = "认证失败，请联系网站管理员！";
 		}
 		httpServletResponse.setContentType("application/json;charset=utf-8");
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error(message)));
+		httpServletResponse.getWriter().write(JSONObject.toJSONString(ApiResult.error(message)));
 	}
 }

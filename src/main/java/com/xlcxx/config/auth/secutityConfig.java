@@ -31,7 +31,7 @@ import javax.sql.DataSource;
  * Description: plodes
  * Created by yhsh on 2020/3/19 14:13
  * version 2.0
- * 方法说明
+ * 方法说明  安全登陆框架
  */
 @Configuration
 @EnableGlobalMethodSecurity(prePostEnabled = true)

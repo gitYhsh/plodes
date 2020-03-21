@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xlcxx.plodes.mapper.system.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.xlcxx.plodes.system.domian.Role">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="ROLE_ID" jdbcType="BIGINT" property="roleId" />
+    <result column="ROLE_ENAME" jdbcType="VARCHAR" property="roleEname" />
+    <result column="ROLE_NAME" jdbcType="VARCHAR" property="roleName" />
+  </resultMap>
+
+  <!--查询用户userName-->
+  <select id="selectUserRoleByUsername" parameterType="string" resultMap="BaseResultMap">
+    select t_role.* from t_role
+      left join t_user_role on t_role.role_id=t_user_role.role_id
+    where t_user_role.user_id=#{username}
+  </select>
+
+
+</mapper>

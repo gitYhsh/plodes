@@ -28,7 +28,7 @@ public class UserServicesImpl extends BaseServices<User> implements UserServices
 	private UserMapper userMapper;
 
 	@Override
-	public List<User> getAllUser(String demo) {
+	public List<User> getAllUser(String username) {
 		try {
 			return this.selectAll();
 		}catch (Exception e){
