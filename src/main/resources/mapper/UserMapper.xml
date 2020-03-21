@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xlcxx.plodes.mapper.system.UserMapper">
+  <resultMap id="BaseResultMap" type="com.xlcxx.plodes.system.domian.User">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <id column="username" jdbcType="VARCHAR" property="username" />
+    <result column="nickname" jdbcType="VARCHAR" property="nickname" />
+    <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="status" jdbcType="CHAR" property="status" />
+  </resultMap>
+</mapper>

@@ -1,0 +1,4 @@
+2020-03-21 09:52:02.381 [xlcxxScheduler_Worker-1] ERROR com.xlcxx.config.quartz.utils.ScheduleJob.executeInternal(ScheduleJob.java:52) - 任务执行失败，任务ID：null 总共耗时：1 毫秒
+2020-03-21 09:52:02.385 [xlcxxScheduler_Worker-1] ERROR com.xlcxx.config.quartz.utils.ScheduleJob.executeInternal(ScheduleJob.java:54) - 任务执行失败，异常原因：No bean named 'testTask' available
+2020-03-21 09:52:10.087 [xlcxxScheduler_Worker-2] ERROR com.xlcxx.config.quartz.utils.ScheduleJob.executeInternal(ScheduleJob.java:52) - 任务执行失败，任务ID：null 总共耗时：0 毫秒
+2020-03-21 09:52:10.087 [xlcxxScheduler_Worker-2] ERROR com.xlcxx.config.quartz.utils.ScheduleJob.executeInternal(ScheduleJob.java:54) - 任务执行失败，异常原因：No bean named 'testTask' available
