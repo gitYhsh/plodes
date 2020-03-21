@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
  * Description: plodes
  * Created by yhsh on 2020/3/21 9:23
  * version 2.0
- * 方法说明
+ * 方法说明   定时器测试
  */
 @CronTag("QuartzTest")
 public class QuartzTest {

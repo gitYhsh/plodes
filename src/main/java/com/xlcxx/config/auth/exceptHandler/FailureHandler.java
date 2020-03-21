@@ -24,7 +24,7 @@ public class FailureHandler implements AuthenticationFailureHandler {
 	private ObjectMapper mapper = new ObjectMapper();
 	@Override
 	public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse,
-	                                    AuthenticationException exception) throws IOException, ServletException {
+	                                    AuthenticationException exception) throws IOException {
 		String message;
 		if (exception instanceof UsernameNotFoundException) {
 			message = "用户不存在！";
@@ -44,6 +44,6 @@ public class FailureHandler implements AuthenticationFailureHandler {
 			message = "认证失败，请联系网站管理员！";
 		}
 		httpServletResponse.setContentType("application/json;charset=utf-8");
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error(message,null)));
+		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error(message)));
 	}
 }

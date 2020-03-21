@@ -1,47 +1,43 @@
 package com.xlcxx.utils;
 
-import java.io.Serializable;
 
+import java.util.HashMap;
 /**
  * Description: plodes
- * Created by yhsh on 2020/3/20 17:01
+ * Created by yhsh on 2020/3/21 14:08
  * version 2.0
  * 方法说明
  */
-public class ApiResult implements Serializable {
 
 
-	private static final long serialVersionUID = -2169445464306157587L;
+public class ApiResult extends HashMap<String, Object> {
 
+	private static final long serialVersionUID = -8713837118340960775L;
+
+	// 成功
+	private static final Integer SUCCESS = 200;
+	// 警告
+	// 异常 失败
 	private static final Integer FAIL = 500;
 
-	private static final Integer SUCCESS = 200;
-
-	private int code ;
-	private String msg;
-	private Object data;
-
-	private ApiResult(int code, String msg, Object data) {
-		this.code = code;
-		this.msg = msg;
-		this.data = data;
-	}
-	public static ApiResult error(String  msg,Object data) {
-		ApiResult apiResult = new ApiResult(FAIL,msg,data);
-		return apiResult;
+	public ApiResult() {
+		put("code", SUCCESS);
+		put("msg", "操作成功");
 	}
 
-	public static ApiResult ok(String  msg,Object data) {
-		ApiResult apiResult = new ApiResult(SUCCESS,msg,data);
-		return apiResult;
+	public static ApiResult error(Object msg) {
+		ApiResult responseBo = new ApiResult();
+		responseBo.put("code", FAIL);
+		responseBo.put("msg", msg);
+		return responseBo;
 	}
 
-	@Override
-	public String toString() {
-		return "ApiResult{" +
-				"code=" + code +
-				", msg='" + msg + '\'' +
-				", data=" + data +
-				'}';
+	public static ApiResult ok(Object msg) {
+		ApiResult responseBo = new ApiResult();
+		responseBo.put("code", SUCCESS);
+		responseBo.put("msg", msg);
+		return responseBo;
 	}
+
+
 }

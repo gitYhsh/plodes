@@ -21,6 +21,6 @@ public class DeniedHandler implements AccessDeniedHandler {
 	@Override
 	public void handle(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AccessDeniedException e) throws IOException, ServletException {
 		httpServletResponse.setContentType("application/json;charset=utf-8");
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("没有权限!",null)));
+		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("没有权限!")));
 	}
 }

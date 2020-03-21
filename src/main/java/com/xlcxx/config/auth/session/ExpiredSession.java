@@ -21,6 +21,6 @@ public class ExpiredSession implements SessionInformationExpiredStrategy {
 	@Override
 	public void onExpiredSessionDetected(SessionInformationExpiredEvent sessionInformationExpiredEvent) throws IOException, ServletException {
 		sessionInformationExpiredEvent.getResponse().setContentType(Constant.JSONUTF8);
-		sessionInformationExpiredEvent.getResponse().getWriter().write(mapper.writeValueAsString(ApiResult.error("登陆失效",null)));
+		sessionInformationExpiredEvent.getResponse().getWriter().write(mapper.writeValueAsString(ApiResult.error("登陆失效")));
 	}
 }

@@ -25,6 +25,6 @@ public class SuccessHandler implements AuthenticationSuccessHandler {
 	@Override
 	public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
 		httpServletResponse.setContentType(Constant.JSONUTF8);
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("登陆成功",null)));
+		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.ok("登陆成功")));
 	}
 }

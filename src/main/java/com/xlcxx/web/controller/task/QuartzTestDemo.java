@@ -26,7 +26,7 @@ public class QuartzTestDemo {
 	@PostConstruct
 	public void init() {
 
-		Job scheduleJob = new Job("QuartzTest","test","1111","0/10 * * * * ?","0"
+		Job scheduleJob = new Job("QuartzTest","test","1111","0/10 * * * * ?","1"
 		,"测试定时器",new Date()
 
 		);

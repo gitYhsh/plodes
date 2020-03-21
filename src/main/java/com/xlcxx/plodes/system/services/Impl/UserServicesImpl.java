@@ -24,7 +24,6 @@ import java.util.List;
 public class UserServicesImpl extends BaseServices<User> implements UserServices {
 
 	private static Logger logger = LoggerFactory.getLogger(UserServicesImpl.class);
-
 	@Autowired
 	private UserMapper userMapper;
 
@@ -38,7 +37,6 @@ public class UserServicesImpl extends BaseServices<User> implements UserServices
 		}
 		return new ArrayList<>();
 	}
-
 	@Override
 	public User findUserByUsername(String username) {
 		try {

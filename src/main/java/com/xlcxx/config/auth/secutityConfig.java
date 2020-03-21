@@ -66,9 +66,6 @@ public class secutityConfig  extends WebSecurityConfigurerAdapter {
 		jdbcTokenRepository.setCreateTableOnStartup(false);
 		return jdbcTokenRepository;
 	}
-
-
-
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 

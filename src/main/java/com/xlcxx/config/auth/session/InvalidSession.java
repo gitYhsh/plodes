@@ -21,6 +21,6 @@ public class InvalidSession implements InvalidSessionStrategy {
 	@Override
 	public void onInvalidSessionDetected(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws IOException, ServletException {
 		httpServletResponse.setContentType(Constant.JSONUTF8);
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("登陆认证已经失效，请重新登陆",null)));
+		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("登陆认证已经失效，请重新登陆")));
 	}
 }

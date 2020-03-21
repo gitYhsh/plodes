@@ -27,7 +27,6 @@ public class RedisServiceImpl implements RedisService {
 
     @Autowired
     JedisPool jedisPool;
-
     /**
      * 处理jedis请求
      * @param f 处理逻辑，通过lambda行为参数化

@@ -22,6 +22,6 @@ public class LogoutSuccess implements LogoutSuccessHandler {
 	@Override
 	public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException, ServletException {
 		httpServletResponse.setContentType(Constant.JSONUTF8);
-		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("注销成功",null)));
+		httpServletResponse.getWriter().write(this.mapper.writeValueAsString(ApiResult.error("注销成功")));
 	}
 }

@@ -61,6 +61,8 @@ jasypt:
   encryptor:
     password: xlcxx
 xlcxx:
+  #是否在console 数据 sql执行语句
+  showsql: true
   security:
     #未认证路径
     login-url: /login
@@ -70,4 +72,5 @@ xlcxx:
     login-processing-url: /login/form
     #最大并发量
     max-login-num : 1
+
 
