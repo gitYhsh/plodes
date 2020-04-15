@@ -12,13 +12,12 @@ public class User implements Serializable {
      * 用户ID
      */
     @Id
-    @Column(name = "user_id")
+    @Column(name = "id")
     private String userId;
 
     /**
      * 用户名
      */
-    @Id
     private String username;
 
     /**用户密码**/
@@ -30,14 +29,86 @@ public class User implements Serializable {
      */
     private String nickname;
 
+
     /**
-     * 部门ID
+     * 手机号
+     * **/
+    private String mobile;
+
+    /**
+     * qq 号
+     * **/
+    private String qq;
+
+    /**
+     * 微信号
+     * **/
+    private String wechat;
+
+    /**
+     * 创建时间
+     * **/
+    private String createtime;
+
+    /**登陆时间**/
+    private String lasttime;
+
+    /**
+     * 状态 1锁定 0有效
      */
-    @Column(name = "dept_id")
-    private Long deptId;
+    private String status;
 
     @Transient
     private List<String> allAuthority;
+
+
+    public User() {
+    }
+
+    public User(String username, String password) {
+        this.username = username;
+        this.password = password;
+    }
+
+    public String getMobile() {
+        return mobile;
+    }
+
+    public void setMobile(String mobile) {
+        this.mobile = mobile;
+    }
+
+    public String getQq() {
+        return qq;
+    }
+
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
+
+    public String getWechat() {
+        return wechat;
+    }
+
+    public void setWechat(String wechat) {
+        this.wechat = wechat;
+    }
+
+    public String getCreatetime() {
+        return createtime;
+    }
+
+    public void setCreatetime(String createtime) {
+        this.createtime = createtime;
+    }
+
+    public String getLasttime() {
+        return lasttime;
+    }
+
+    public void setLasttime(String lasttime) {
+        this.lasttime = lasttime;
+    }
 
     public List<String> getAllAuthority() {
         return allAuthority;
@@ -46,11 +117,6 @@ public class User implements Serializable {
     public void setAllAuthority(List<String> allAuthority) {
         this.allAuthority = allAuthority;
     }
-
-    /**
-     * 状态 1锁定 0有效
-     */
-    private String status;
 
     /**
      * 获取用户ID
@@ -106,23 +172,7 @@ public class User implements Serializable {
         this.nickname = nickname == null ? null : nickname.trim();
     }
 
-    /**
-     * 获取部门ID
-     *
-     * @return dept_id - 部门ID
-     */
-    public Long getDeptId() {
-        return deptId;
-    }
 
-    /**
-     * 设置部门ID
-     *
-     * @param deptId 部门ID
-     */
-    public void setDeptId(Long deptId) {
-        this.deptId = deptId;
-    }
 
     /**
      * 获取状态 1锁定 0有效
@@ -158,7 +208,6 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", nickname='" + nickname + '\'' +
-                ", deptId=" + deptId +
                 ", status='" + status + '\'' +
                 '}';
     }

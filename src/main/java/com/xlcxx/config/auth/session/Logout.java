@@ -17,7 +17,6 @@ public class Logout implements LogoutHandler {
 
 	private SessionRegistry sessionRegistry;
 
-
 	@Override
 	public void logout(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) {
 		String sessionId = httpServletRequest.getRequestedSessionId();
@@ -28,6 +27,5 @@ public class Logout implements LogoutHandler {
 	public void setSessionRegistry(SessionRegistry sessionRegistry) {
 		this.sessionRegistry = sessionRegistry;
 	}
-
 
 }

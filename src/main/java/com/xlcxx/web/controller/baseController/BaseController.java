@@ -44,26 +44,27 @@ public class BaseController {
 		return getDataTable(pageInfo);
 	}
 	/**获取当前登陆用户**/
-	protected User getCurrentUser(){
+	protected Object getCurrentUser(){
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		Object principal = authentication.getPrincipal();
-		User user = new User();
-		if(principal instanceof AuthonUserDetails) {
-			AuthonUserDetails userDetails = (AuthonUserDetails) principal;
-			user.setUserId(userDetails.getUserid());
-			user.setPassword(userDetails.getPassword());
-			user.setUsername(userDetails.getUsername());
-			user.setNickname(userDetails.getNickname());
-			user.setDeptId(Long.valueOf(userDetails.getDeptid()));
-			Collection<GrantedAuthority> list = userDetails.getAuthorities();
-			List<Object> listall = Arrays.asList(list.toArray());
-			List<String> allAuth = new ArrayList<>();
-			for (Object ibj : listall) {
-				allAuth.add(ibj.toString());
-			}
-			user.setAllAuthority(allAuth);
-		}
-		return user;
+
+//
+//		User user = new User();
+//		if(principal instanceof AuthonUserDetails) {
+//			AuthonUserDetails userDetails = (AuthonUserDetails) principal;
+//			user.setUserId(userDetails.getUserid());
+//			user.setPassword(userDetails.getPassword());
+//			user.setUsername(userDetails.getUsername());
+//			user.setNickname(userDetails.getNickname());
+//			Collection<GrantedAuthority> list = userDetails.getAuthorities();
+//			List<Object> listall = Arrays.asList(list.toArray());
+//			List<String> allAuth = new ArrayList<>();
+//			for (Object ibj : listall) {
+//				allAuth.add(ibj.toString());
+//			}
+//			user.setAllAuthority(allAuth);
+//		}
+		return principal;
 
 	}
 

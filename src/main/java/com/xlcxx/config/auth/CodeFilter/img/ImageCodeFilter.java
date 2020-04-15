@@ -1,13 +1,12 @@
-package com.xlcxx.config.auth.imageCode.img;
+package com.xlcxx.config.auth.CodeFilter.img;
 
 import com.xlcxx.config.auth.damain.SecurityProperties;
 import com.xlcxx.config.auth.exceptHandler.ValidateCodeException;
+import com.xlcxx.plodes.baseServices.RedisService;
 import com.xlcxx.utils.Constant;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
-import org.springframework.social.connect.web.HttpSessionSessionStrategy;
-import org.springframework.social.connect.web.SessionStrategy;
 import org.springframework.util.AntPathMatcher;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.ServletRequestUtils;
@@ -26,7 +25,7 @@ public class ImageCodeFilter extends OncePerRequestFilter implements Initializin
 
     private AuthenticationFailureHandler authenticationFailureHandler;
 
-    private SessionStrategy sessionStrategy = new HttpSessionSessionStrategy();
+    private RedisService redisService;
 
     private Set<String> url = new HashSet<>();
 
@@ -39,13 +38,12 @@ public class ImageCodeFilter extends OncePerRequestFilter implements Initializin
         super.afterPropertiesSet();
         url.add(securityProperties.getLoginProcessingUrl());
     }
-
     @Override
     protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
         boolean match = false;
         for (String u : url) {
-            if (pathMatcher.match(Constant.PROJECT_URL+u, httpServletRequest.getRequestURI())) {
-                match = true;
+            if (pathMatcher.match(u, httpServletRequest.getServletPath())) {
+                match = true;break;
             }
         }
         if (match) {
@@ -60,22 +58,26 @@ public class ImageCodeFilter extends OncePerRequestFilter implements Initializin
     }
 
     private void validateCode(ServletWebRequest servletWebRequest) throws ServletRequestBindingException {
-        ImageCode codeInSession = (ImageCode) sessionStrategy.getAttribute(servletWebRequest, Constant.SESSION_KEY_IMAGE_CODE);
+
+        //ImageCode codeInSession = (ImageCode) sessionStrategy.getAttribute(servletWebRequest, Constant.SESSION_KEY_IMAGE_CODE);
         String codeInRequest = ServletRequestUtils.getStringParameter(servletWebRequest.getRequest(), "imageCode");
         if (StringUtils.isBlank(codeInRequest)) {
             throw new ValidateCodeException("验证码不能为空！");
         }
-        if (codeInSession == null) {
-            throw new ValidateCodeException("验证码不存在，请重新发送！");
-        }
-        if (codeInSession.isExpire()) {
-            sessionStrategy.removeAttribute(servletWebRequest, Constant.SESSION_KEY_IMAGE_CODE);
-            throw new ValidateCodeException("验证码已过期，请重新发送！");
-        }
-        if (!StringUtils.equalsIgnoreCase(codeInSession.getCode(), codeInRequest)) {
+        String key = Constant.SESSION_KEY_IMAGE_CODE+codeInRequest;
+        String token = redisService.get(key);
+        if (!StringUtils.equalsIgnoreCase(token, codeInRequest)) {
             throw new ValidateCodeException("验证码不正确！");
         }
-        sessionStrategy.removeAttribute(servletWebRequest, Constant.SESSION_KEY_IMAGE_CODE);
+        if (StringUtils.isEmpty(token)) {
+            throw new ValidateCodeException("验证码已过期，请重新刷新！");
+        }
+//        if (codeInSession.isExpire()) {
+//            //sessionStrategy.removeAttribute(servletWebRequest, Constant.SESSION_KEY_IMAGE_CODE);
+//            throw new ValidateCodeException("验证码已过期，请重新发送！");
+//        }
+
+       // sessionStrategy.removeAttribute(servletWebRequest, Constant.SESSION_KEY_IMAGE_CODE);
 
     }
     public void setAuthenticationFailureHandler(AuthenticationFailureHandler authenticationFailureHandler) {
@@ -84,5 +86,9 @@ public class ImageCodeFilter extends OncePerRequestFilter implements Initializin
 
     public void setSecurityProperties(SecurityProperties securityProperties) {
         this.securityProperties = securityProperties;
+    }
+
+    public void setRedisService(RedisService redisService) {
+        this.redisService = redisService;
     }
 }

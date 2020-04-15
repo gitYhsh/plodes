@@ -13,10 +13,10 @@ import java.util.Properties;
  * version 2.0
  * 方法说明 定时器的配置
  */
-@Configuration
+//@Configuration
 public class ScheduleConfig {
 
-	@Bean
+	//@Bean
 	public SchedulerFactoryBean schedulerFactoryBean(DataSource dataSource) {
 		SchedulerFactoryBean factory = new SchedulerFactoryBean();
 		factory.setDataSource(dataSource);

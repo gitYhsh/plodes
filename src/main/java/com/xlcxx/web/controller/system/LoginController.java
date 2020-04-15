@@ -1,5 +1,6 @@
 package com.xlcxx.web.controller.system;
 
+import com.xlcxx.utils.ApiResult;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
@@ -7,6 +8,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 import org.springframework.security.web.savedrequest.SavedRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -23,7 +25,6 @@ public class LoginController {
 	private Logger log = LoggerFactory.getLogger(this.getClass());
 
 	private RequestCache requestCache = new HttpSessionRequestCache();
-
 
 	@GetMapping("/login")
 	public String login(HttpServletRequest request, HttpServletResponse response) {

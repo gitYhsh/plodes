@@ -14,7 +14,7 @@ import java.io.IOException;
  * Description: plodes
  * Created by yhsh on 2020/3/20 14:02
  * version 2.0
- * 方法说明
+ * 方法说明 sesssion  过期 失效
  */
 public class ExpiredSession implements SessionInformationExpiredStrategy {
 

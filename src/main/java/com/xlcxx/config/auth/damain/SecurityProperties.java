@@ -12,16 +12,33 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "xlcxx.security")
 public class SecurityProperties {
 
-	private String loginUrl;
-
-
-	// 记住我超时时间
-	private int rememberMeTimeout;
-
+	/**userAnd password login**/
 	private String loginProcessingUrl;
-	//最大并发量
+
+	/**免认证,免token 得url**/
+	private String anonResourcesUrl;
+
+
+	//最大并发量(目前不适用)
 	private int  maxLoginNum;
 
+
+	private SmsCodeProperties sms = new SmsCodeProperties();
+
+	public String getAnonResourcesUrl() {
+		return anonResourcesUrl;
+	}
+
+	public void setAnonResourcesUrl(String anonResourcesUrl) {
+		this.anonResourcesUrl = anonResourcesUrl;
+	}
+
+	public SmsCodeProperties getSms() {
+		return sms;
+	}
+	public void setSms(SmsCodeProperties sms) {
+		this.sms = sms;
+	}
 
 	public int getMaxLoginNum() {
 		return maxLoginNum;
@@ -29,14 +46,6 @@ public class SecurityProperties {
 
 	public void setMaxLoginNum(int maxLoginNum) {
 		this.maxLoginNum = maxLoginNum;
-	}
-
-	public int getRememberMeTimeout() {
-		return rememberMeTimeout;
-	}
-
-	public void setRememberMeTimeout(int rememberMeTimeout) {
-		this.rememberMeTimeout = rememberMeTimeout;
 	}
 
 	public String getLoginProcessingUrl() {
@@ -47,12 +56,6 @@ public class SecurityProperties {
 		this.loginProcessingUrl = loginProcessingUrl;
 	}
 
-	public String getLoginUrl() {
-		return loginUrl;
-	}
 
-	public void setLoginUrl(String loginUrl) {
-		this.loginUrl = loginUrl;
-	}
 
 }

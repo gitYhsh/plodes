@@ -1,7 +1,6 @@
 package com.xlcxx.config.auth.exceptHandler;
 
 import com.alibaba.fastjson.JSONObject;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.xlcxx.utils.ApiResult;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.*;
@@ -9,7 +8,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -43,6 +41,7 @@ public class FailureHandler implements AuthenticationFailureHandler {
 		} else {
 			message = "认证失败，请联系网站管理员！";
 		}
+		exception.printStackTrace();
 		httpServletResponse.setContentType("application/json;charset=utf-8");
 		httpServletResponse.getWriter().write(JSONObject.toJSONString(ApiResult.error(message)));
 	}

@@ -1,8 +1,8 @@
-package com.xlcxx.config.auth.imageCode.img;
+package com.xlcxx.config.auth.CodeFilter.utils;
 
-
-
-import com.xlcxx.config.auth.imageCode.ValidateCodeGenerator;
+import com.xlcxx.config.auth.CodeFilter.img.ImageCode;
+import com.xlcxx.config.auth.damain.SecurityProperties;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.awt.*;
@@ -10,10 +10,13 @@ import java.awt.image.BufferedImage;
 import java.util.Random;
 
 @Service
-public class ImageCodeGenerator implements ValidateCodeGenerator {
+public class CodeGenerator implements ValidateCodeGenerator {
+    @Autowired
+    private SecurityProperties securityProperties;
+
 
     @Override
-    public ImageCode createCode() {
+    public ImageCode createCodeImage() {
         int width = 148; // 验证码图片宽度
         int height =  36; // 验证码图片长度
         int length = 4; // 验证码位数
@@ -57,5 +60,14 @@ public class ImageCodeGenerator implements ValidateCodeGenerator {
         int b = fc + random.nextInt(bc - fc);
         return new Color(r, g, b);
     }
+    /**
+     * 自定义手机短信模板
+     * **/
+    @Override
+    public ValidateCode createCodeSms() {
+        String code ="111110"; //RandomStringUtils.randomNumeric(securityProperties.getSms().getLength());
+        return new ValidateCode(code, securityProperties.getSms().getExpireIn());
+    }
+
 
 }

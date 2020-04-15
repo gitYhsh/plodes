@@ -5,10 +5,14 @@
     <!--
       WARNING - @mbg.generated
     -->
-    <id column="user_id" jdbcType="VARCHAR" property="userId" />
+    <id column="id" jdbcType="VARCHAR" property="userId" />
     <id column="username" jdbcType="VARCHAR" property="username" />
     <result column="nickname" jdbcType="VARCHAR" property="nickname" />
-    <result column="dept_id" jdbcType="BIGINT" property="deptId" />
+    <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+    <result column="qq" jdbcType="VARCHAR" property="qq" />
+    <result column="wechat" jdbcType="VARCHAR" property="wechat" />
+    <result column="createtime" jdbcType="VARCHAR" property="createtime" />
+    <result column="lasttime" jdbcType="VARCHAR" property="lasttime" />
     <result column="status" jdbcType="CHAR" property="status" />
   </resultMap>
 </mapper>

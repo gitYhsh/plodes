@@ -13,12 +13,49 @@ import java.util.Collection;
  */
 public class AuthonUserDetails extends User {
 
-
-	private String deptid;
-
 	private String userid;
 
+	private String lousername;
+
 	private  String nickname;
+
+	private String mobile;
+
+	private String qq;
+
+	private String wechat;
+
+	public String getLousername() {
+		return lousername;
+	}
+
+	public void setLousername(String lousername) {
+		this.lousername = lousername;
+	}
+
+	public String getMobile() {
+		return mobile;
+	}
+
+	public void setMobile(String mobile) {
+		this.mobile = mobile;
+	}
+
+	public String getQq() {
+		return qq;
+	}
+
+	public void setQq(String qq) {
+		this.qq = qq;
+	}
+
+	public String getWechat() {
+		return wechat;
+	}
+
+	public void setWechat(String wechat) {
+		this.wechat = wechat;
+	}
 
 	public String getUserid() {
 		return userid;
@@ -34,14 +71,6 @@ public class AuthonUserDetails extends User {
 
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
-	}
-
-	public String getDeptid() {
-		return deptid;
-	}
-
-	public void setDeptid(String deptid) {
-		this.deptid = deptid;
 	}
 
 	public AuthonUserDetails(String username, String password, Collection<? extends GrantedAuthority> authorities) {

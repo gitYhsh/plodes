@@ -29,7 +29,6 @@ public class UserController extends BaseController {
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping(value = "user/getAlluser")
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public Map<String,Object> getAlluser(QueryRequest queryRequest){
 		return this.selectByPageNumSize(queryRequest,()->userServices.getAllUser("yhsh"));
 	}
@@ -45,10 +44,8 @@ public class UserController extends BaseController {
 		return ApiResult.ok(this.getCurrentUser());
 	}
 
-
 	@GetMapping(value = "user/addAlluser")
 	public void addAlluser(User user){
-
 		String  username = passwordEncoder.encode(user.getPassword());
 		System.out.println(username);
 	}

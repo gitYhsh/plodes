@@ -1,4 +1,4 @@
-package com.xlcxx.config.auth.imageCode;
+package com.xlcxx.config.auth.CodeFilter.utils;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;

@@ -15,9 +15,12 @@ import java.util.List;
 public interface UserServices extends IServices<User> {
 
 	/**获取用户列表**/
-	@Cacheable(value="users", key="#p0")
+	//@Cacheable(value="users", key="#p0")
 	List<User> getAllUser(String username);
 
 	/**根据名称username获取用户**/
-	User  findUserByUsername(String username);
+	User  checkUserByLogin(User user);
+
+	/**手机号登陆,如果没有则新增一个用户**/
+
 }

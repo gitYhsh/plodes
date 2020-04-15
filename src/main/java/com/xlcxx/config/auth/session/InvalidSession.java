@@ -15,7 +15,7 @@ import java.io.IOException;
  * Description: plodes
  * Created by yhsh on 2020/3/20 13:53
  * version 2.0
- * 方法说明
+ * 方法说明   session 失效(采用token  不适用session)
  */
 public class InvalidSession implements InvalidSessionStrategy {
 	@Override

@@ -22,21 +22,21 @@ public class QuartzTestDemo {
 	@Autowired
 	private Scheduler sdecheduler;
 
-	@PostConstruct
-	public void init() {
-
-		Job scheduleJob = new Job("QuartzTest","test","1111","0/10 * * * * ?","1"
-		,"测试定时器",new Date()
-
-		);
-		// 如果不存在，则创建
-			CronTrigger cronTrigger = ScheduleUtils.getCronTrigger(sdecheduler, scheduleJob.getJobId());
-			if (cronTrigger == null) {
-				ScheduleUtils.createScheduleJob(sdecheduler, scheduleJob);
-			} else {
-				ScheduleUtils.updateScheduleJob(sdecheduler, scheduleJob);
-			}
-	}
+//	@PostConstruct
+//	public void init() {
+//
+//		Job scheduleJob = new Job("QuartzTest","test","1111","0/10 * * * * ?","1"
+//		,"测试定时器",new Date()
+//
+//		);
+//		// 如果不存在，则创建
+//			CronTrigger cronTrigger = ScheduleUtils.getCronTrigger(sdecheduler, scheduleJob.getJobId());
+//			if (cronTrigger == null) {
+//				ScheduleUtils.createScheduleJob(sdecheduler, scheduleJob);
+//			} else {
+//				ScheduleUtils.updateScheduleJob(sdecheduler, scheduleJob);
+//			}
+//	}
 
 
 }

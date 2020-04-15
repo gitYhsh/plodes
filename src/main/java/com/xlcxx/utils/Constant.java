@@ -8,8 +8,12 @@ package com.xlcxx.utils;
  */
 public class Constant {
 
-	// 图形验证码 session key
-	public static final String SESSION_KEY_IMAGE_CODE = "SESSION_KEY_IMAGE_CODE";
+	// 图形验证码 redis key
+	public static final String SESSION_KEY_IMAGE_CODE = "Image:SESSION_KEY_IMAGE_CODE";
+
+	/**手机验证码**/
+	// 手机验证码 redis key
+	public static final String SESSION_KEY_SMS_CODE = "Sms:SESSION_KEY_SMS_CODE";
 
 	/**
 	 * 任务调度参数key
@@ -29,8 +33,6 @@ public class Constant {
 	 * 任务调度正常
 	 * **/
 	public static final String JOB_NIMOAL = "0";
-
-
 
 	//前缀
 	public static final String PROJECT_URL= "/plodes";

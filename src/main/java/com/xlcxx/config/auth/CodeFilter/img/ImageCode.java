@@ -1,8 +1,7 @@
-package com.xlcxx.config.auth.imageCode.img;
+package com.xlcxx.config.auth.CodeFilter.img;
 
 
-
-import com.xlcxx.config.auth.imageCode.ValidateCode;
+import com.xlcxx.config.auth.CodeFilter.utils.ValidateCode;
 
 import java.awt.image.BufferedImage;
 import java.time.LocalDateTime;

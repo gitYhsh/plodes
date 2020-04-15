@@ -5,7 +5,7 @@ server:
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://192.168.8.204:3308/godly?useUnicode=true&characterEncoding=utf8&useSSL=true&&allowMultiQueries=true&serverTimezone=UTC
+    url: jdbc:mysql://192.168.8.204:3308/plodes?useUnicode=true&characterEncoding=utf8&useSSL=true&&allowMultiQueries=true&serverTimezone=UTC
     username: root
     password : 123456
     initialSize: 10
@@ -72,5 +72,7 @@ xlcxx:
     login-processing-url: /login/form
     #最大并发量
     max-login-num : 1
+    #免认证
+    anon-resources-url : /sms/code,/image/code
 
 
