@@ -104,7 +104,6 @@ public class secutityConfig  extends WebSecurityConfigurerAdapter {
 		jwtAuthorizationFilter.setAuthenticationFailureHandler(failureHandler);
 		jwtAuthorizationFilter.afterPropertiesSet();
 
-
 		//http.headers().cacheControl();//禁用头部缓存
 		http.exceptionHandling().accessDeniedHandler(new DeniedHandler())
 				.authenticationEntryPoint(new AnonymousAuthPoint())
