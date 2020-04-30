@@ -5,6 +5,10 @@ import com.xlcxx.plodes.system.services.UserServices;
 import com.xlcxx.utils.ApiResult;
 import com.xlcxx.utils.QueryRequest;
 import com.xlcxx.web.controller.baseController.BaseController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
+import io.swagger.annotations.ApiImplicitParams;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,9 +21,10 @@ import java.util.Map;
  * Description: plodes
  * Created by yhsh on 2020/3/19 10:54
  * version 2.0
- * 方法说明
+ * 方法说明  测试权限登陆
  */
 @RestController
+@Api(tags = "11")
 public class UserController extends BaseController {
 
 	@Autowired
@@ -29,6 +34,10 @@ public class UserController extends BaseController {
 	private PasswordEncoder passwordEncoder;
 
 	@GetMapping(value = "user/getAlluser")
+	@ApiOperation(value = "根据用户名获取菜单列表")
+	@ApiImplicitParams({
+			@ApiImplicitParam(name = "userName", value = "用户名", required = true, dataType = "String", paramType = "query"),
+	})
 	public Map<String,Object> getAlluser(QueryRequest queryRequest){
 		return this.selectByPageNumSize(queryRequest,()->userServices.getAllUser("yhsh"));
 	}

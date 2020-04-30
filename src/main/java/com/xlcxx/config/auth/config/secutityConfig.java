@@ -2,15 +2,13 @@ package com.xlcxx.config.auth.config;
 
 import com.xlcxx.config.auth.CodeFilter.img.ImageCodeFilter;
 import com.xlcxx.config.auth.CodeFilter.jwt.JWTAuthorizationFilter;
-import com.xlcxx.config.auth.CodeFilter.jwt.JwtAuthenticationFilter;
 import com.xlcxx.config.auth.CodeFilter.sms.DefaultSmsSender;
 import com.xlcxx.config.auth.CodeFilter.sms.SmsCodeFilter;
 import com.xlcxx.config.auth.CodeFilter.sms.SmsCodeSender;
 import com.xlcxx.config.auth.damain.SecurityProperties;
-import com.xlcxx.config.auth.exceptHandler.CustomAuthenticationEntryPoint;
+import com.xlcxx.config.auth.exceptHandler.AnonymousAuthPoint;
 import com.xlcxx.config.auth.exceptHandler.DeniedHandler;
 import com.xlcxx.config.auth.exceptHandler.FailureHandler;
-import com.xlcxx.config.auth.exceptHandler.SuccessHandler;
 import com.xlcxx.config.auth.services.UserDetailService;
 import com.xlcxx.config.auth.session.LogoutSuccess;
 import com.xlcxx.config.auth.session.Logout;
@@ -26,7 +24,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.session.SessionRegistry;
 import org.springframework.security.core.session.SessionRegistryImpl;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -73,7 +70,6 @@ public class secutityConfig  extends WebSecurityConfigurerAdapter {
 	@Autowired
 	private RedisService redisService;
 
-
 	/**用户密码加密**/
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -111,7 +107,7 @@ public class secutityConfig  extends WebSecurityConfigurerAdapter {
 
 		//http.headers().cacheControl();//禁用头部缓存
 		http.exceptionHandling().accessDeniedHandler(new DeniedHandler())
-				.authenticationEntryPoint(new CustomAuthenticationEntryPoint())
+				.authenticationEntryPoint(new AnonymousAuthPoint())
 		.and()
 				.addFilterBefore(imageCodeFilter, UsernamePasswordAuthenticationFilter.class)
 				.addFilterBefore(smsCodeFilter, UsernamePasswordAuthenticationFilter.class)
@@ -144,7 +140,12 @@ public class secutityConfig  extends WebSecurityConfigurerAdapter {
 				//.anonymous().disable() //禁止匿名
 				.authorizeRequests() // 授权配置
 				// 免认证静态资源路径
-				.antMatchers("/login","/sms/code","/image/code","/js/**").permitAll() // 配置免认证路径
+				.antMatchers("/sms/code","/image/code","/oauth/login/qq","/oauth/login/wechat","/v2/api-docs",
+						"/configuration/ui", "/swagger-resources", "/configuration/security",
+						"/swagger-ui.html", "/webjars/**","/swagger-resources/configuration/ui","/swagge‌​r-ui.html","/doc.html")
+				.permitAll()
+
+				//.antMatchers("/login","/sms/code","/image/code","/oauth/login/qq","/doc.html","/webjars/**").permitAll() // 配置免认证路径
 				.anyRequest()  // 所有请求
 				.authenticated() // 都需要认证
 		.and().sessionManagement().disable() //禁用 session

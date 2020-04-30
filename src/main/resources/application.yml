@@ -60,6 +60,13 @@ pagehelper:
 jasypt:
   encryptor:
     password: xlcxx
+justauth:
+  enabled: true
+  type:
+    WECHAT:
+      client-id: wx941d13468eeca9f0
+      client-secret: 350406ca6d90e4a9e3213e542188bb23
+      redirect-uri: https://www.xlcwx.com/Account/signin-wechat
 xlcxx:
   #是否在console 数据 sql执行语句
   showsql: true
@@ -73,6 +80,6 @@ xlcxx:
     #最大并发量
     max-login-num : 1
     #免认证
-    anon-resources-url : /sms/code,/image/code
+    anon-resources-url : /sms/code,/image/code,/oauth/login/qq,/doc.html,/oauth/login/wechat
 
 

@@ -1,9 +1,7 @@
 package com.xlcxx.config.auth.services;
 
 import com.xlcxx.config.auth.damain.AuthonUserDetails;
-import com.xlcxx.plodes.system.domian.Role;
 import com.xlcxx.plodes.system.domian.User;
-import com.xlcxx.plodes.system.services.RoleServices;
 import com.xlcxx.plodes.system.services.UserServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
@@ -11,6 +9,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
 
 
 /**
@@ -82,10 +81,4 @@ public class UserDetailService implements UserDetailsService {
 			throw new UsernameNotFoundException("");
 		}
 	}
-
-
-
-
-
-
 }

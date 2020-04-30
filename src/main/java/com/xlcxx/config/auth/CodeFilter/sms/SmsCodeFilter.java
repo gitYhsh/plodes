@@ -22,6 +22,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+
 public class SmsCodeFilter extends OncePerRequestFilter implements InitializingBean {
 
     private AuthenticationFailureHandler authenticationFailureHandler;
@@ -37,8 +38,6 @@ public class SmsCodeFilter extends OncePerRequestFilter implements InitializingB
     @Override
     public void afterPropertiesSet() throws ServletException {
         super.afterPropertiesSet();
-        //String[] configUrls = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getSms().getUrl(), ",");
-       // url.addAll(Arrays.asList(configUrls));
         url.add(securityProperties.getSms().getLoginProcessingUrl());
     }
 

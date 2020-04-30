@@ -44,14 +44,22 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
 		String []configUrl = StringUtils.splitByWholeSeparatorPreserveAllTokens(securityProperties.getAnonResourcesUrl(),",");
-		/**判断认证方法是不是ajax 或者是post**/
-		if (PlodesUtils.isAjaxRequest(request) ) {
-			throw new AuthenticationServiceException("认证方法不支持: " + request.getMethod());
-		}
+
+
+//		/**判断认证方法是不是ajax 或者是post**/
+//		if (PlodesUtils.isAjaxRequest(request) ) {
+//			throw new AuthenticationServiceException("认证方法不支持: " + request.getMethod());
+//		}
 		String access_token = request.getHeader("access_token");
 		List<String> listUrl = Arrays.asList(configUrl);
-		if (!listUrl.contains(request.getServletPath())) {
+
+		if (!listUrl.contains(request.getServletPath())
+				&& !request.getServletPath().contains("webjars")
+				&& !request.getServletPath().contains("swagger-resources")
+				&& !request.getServletPath().contains("/v2/api-docs")
+		) {
 			try {
+				;
 				validateTokenCode(new ServletWebRequest(request),access_token);
 			} catch (ValidateCodeException e) {
 				authenticationFailureHandler.onAuthenticationFailure(request, response, e);
@@ -60,7 +68,6 @@ public class JWTAuthorizationFilter extends BasicAuthenticationFilter {
 			// 如果请求头中有token，则进行解析，并且设置认证信息
 			SecurityContextHolder.getContext().setAuthentication(getAuthentication(access_token));
 		}
-
 		chain.doFilter(request, response);
 	}
 	private void validateTokenCode(ServletWebRequest servletWebRequest,String accessToken) throws ServletRequestBindingException {

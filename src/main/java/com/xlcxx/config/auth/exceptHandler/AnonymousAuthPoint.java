@@ -19,7 +19,7 @@ import java.io.IOException;
  * 方法说明  匿名用户权限过滤
  */
 @Configuration
-public class CustomAuthenticationEntryPoint implements AuthenticationEntryPoint {
+public class AnonymousAuthPoint implements AuthenticationEntryPoint {
 
 	@Override
 	public void commence(HttpServletRequest request, HttpServletResponse response,
